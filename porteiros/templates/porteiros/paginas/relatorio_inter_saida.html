@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/relatorio.css' %}">
+    <img src="{% static 'images/logo.png' %}">
+
+
+    <title>Relatório Inter Saída</title>
+
+</head>
+<body>
+    <h1 class='titulo'>Inter Saída</h1>
+    <br><br><br>
+
+    <form method="GET" action="">
+        <div class="tabela">
+            <div class="incio">
+                <label for="data_inicio">Data de início:</label><br>
+                <input type="date" id="data_inicio" name="data_inicio" value="{{ selected_data_inicio }}"><br>    
+            </div>
+
+            <div class="termino">
+                <label for="data_fim">Data de término:</label><br>
+                <input type="date" id="data_fim" name="data_fim" value="{{ selected_data_fim }}"><br>
+            </div>
+
+            <div class="placa">
+                <label for="placa">Selecione a placa:</label><br>
+                <select id="placa" name="placa">
+                    <option value="">Todas</option>
+                    {% for placa in placas %}
+                        <option value="{{ placa }}">{{ placa }}</option>
+                    {% endfor %}
+                </select><br>
+            </div>
+        </div>
+    
+        <button type="submit" class="filtrar">Filtrar</button>
+    </form>
+
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Veículo</th>
+                <th>Data</th>
+                <th>Km Saída</th>
+                <th>Lacre Saída</th>
+                <th>NFS Saída</th>
+                <th>Motorista</th>
+                <th>Destino</th>
+                <th>Carga</th>
+                <th>Qtde Malotes Saída</th>
+                <th>Carga Extra</th>
+                <th>Especificação Carga</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.placa }}</td>
+                <td>{{ item.veiculo }}</td>
+                <td>{{ item.data }}</td>
+                <td>{{ item.km_saida }}</td>
+                <td>{{ item.lacre_saida }}</td>
+                <td>{{ item.nfs_saida }}</td>
+                <td>{{ item.motorista }}</td>
+                <td>{{ item.destino }}</td>
+                <td>{{ item.carga }}</td>
+                <td>{{ item.qtde_malotes_saida }}</td>
+                <td>{{ item.carga_extra }}</td>
+                <td>{{ item.especificacao_carga }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>        
+    </table>
+    <br>
+
+    <button onclick="window.print()">Imprimir</button>
+
+    <button onclick="closeTab()">Voltar</button>
+
+    <script>
+        function closeTab() {
+            window.close();
+        }
+
+        //--------------------------------------------
+
+        var selectedDataInicio = "{{ selected_data_inicio }}";
+        var selectedDataFim = "{{ selected_data_fim }}";
+
+        if (selectedDataInicio !== "") {
+            document.getElementById('data_inicio').value = selectedDataInicio;
+        }
+
+        if (selectedDataFim !== "") {
+            document.getElementById('data_fim').value = selectedDataFim;
+        }
+
+        var today = new Date();
+        var formattedDate = today.toISOString().split('T')[0];
+
+        if (document.getElementById('data_inicio').value === "") {
+            document.getElementById('data_inicio').value = formattedDate;
+        }
+
+        if (document.getElementById('data_fim').value === "") {
+            document.getElementById('data_fim').value = formattedDate;
+        }
+
+
+    </script>
+
+</body>
+</html>

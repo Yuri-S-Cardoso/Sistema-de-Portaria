@@ -1,0 +1,20 @@
+{% extends 'porteiros/base/base.html' %}
+
+{% block content %}
+
+
+<form method="post" autocomplete="off">
+    {% csrf_token %}
+
+    <br><br><br>
+
+    <label for="nome">Nome da Empresa:</label>
+    <input type="text" id="nome" name="nome" placeholder="Digite o nome" maxlength="50" required oninput="this.value = this.value.toUpperCase()"><br>
+
+    <label for="matricula">CNPJ:</label>
+    <input type="text" id="matricula" name="cnpj" placeholder="Digite a matrícula" pattern="\d*" maxlength="14" required oninput="this.value = this.value.toUpperCase()"><br>
+
+    <input class="cadastrar" type="submit" value="Cadastrar">
+</form>
+
+{% endblock %}

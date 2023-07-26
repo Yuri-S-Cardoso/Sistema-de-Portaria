@@ -1,0 +1,14 @@
+{% include 'porteiros/base/style.html' %}
+{% load static %}
+<body>
+    <div class="contact-form">
+        <a href="{% url 'login' %}">
+            <img src="{% static 'images/logo.png' %}" alt="" class="avatar">
+        </a>
+            <h2>Controle de Entrada e Saída de Veículos</h2>
+        {% block content %}
+
+        {% endblock %} 
+</body>
+
+</html>

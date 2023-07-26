@@ -1,0 +1,47 @@
+{% extends 'porteiros/base/base.html' %}
+
+{% block content %}
+<body>
+
+  <form action="" method="post" autocomplete="off">
+    {% csrf_token %} 
+
+    <div>
+      <label for="placa">Placa do Veículo</label>
+      <input type="text" name="placa" placeholder="Digite a Placa" maxlength="8" required oninput="this.value = this.value.toUpperCase()"><br>
+
+      <label for="veiculo">Veículo</label>
+      <input type="text" name="veiculo" placeholder="Digite o Veículo" maxlength="10" required oninput="this.value = this.value.toUpperCase()"><br>
+
+
+      <label for="empresa">Empresa</label>
+      <input type="text" name="empresa" placeholder="Digite a Empresa" maxlength="50" required oninput="this.value = this.value.toUpperCase()"><br>
+    
+      <input class="cadastrar" type="submit" value="Cadastrar">
+    </div>
+  </form>
+
+  <a href="{% url 'cadastro' %}">
+    <button>Voltar</button>
+  </a>
+</body>
+<style>
+  button {
+      background-color: rgba(0,174,239,255);
+      transition: background-color 0.3s; /* Efeito de transição suave */
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      height: 30px;
+      color: #fff;
+      font-size: 15px;
+      
+  }
+  button:hover {
+      background-color: rgba(226,26,34,255);
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+  }
+</style>
+{% endblock %}

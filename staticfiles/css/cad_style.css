@@ -1,0 +1,361 @@
+
+body {
+    background-image: url('/static/images/background.jpg');
+}
+
+/*------------------------------------------------------------------*/
+
+.cad_base {
+    padding: 0.2rem 32.7rem;
+    border: 2px solid rgb(22, 0, 224);
+    border-radius: 3%;
+    background-color: #a09d9db3;
+    text-align: center;
+}
+.cad {
+text-decoration: none;
+font-size: 18px;
+color: black;
+}
+@media (max-width: 1920px) {
+.cad_base {
+    padding: 0.2rem 2rem; /* Ajuste o valor conforme necessário para telas menores */
+}
+}
+
+/*------------------------------------------------------------------*/
+
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    overflow: hidden;
+    background-color: #a09d9db3;
+}
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1px 1px;
+}
+.inter {
+text-align: center;
+color: black;
+font-family: "Times New Roman", Times, serif;
+font-size: 2rem;
+text-decoration: underline;
+margin: 0;
+}
+.placa select {
+font-size: 18px;
+border: 1.5px solid black;
+padding: 1.5px;
+border: 0;
+border-radius: 5px;
+cursor: pointer;
+}
+.placa input {
+font-size: 1rem;
+border: 1rem;
+border-radius: 5px;
+padding: 3px;
+text-align: center;
+}
+@media (max-width: 1024px) {
+.container {
+    padding: 10px;
+}
+.inter {
+    font-size: 1.5rem;
+}
+.placa select {
+    font-size: 16px;
+}
+.placa input {
+    font-size: 1rem;
+    text-align: center;
+    padding: 3px;
+}
+}
+.titulo {
+    text-align: center;
+    height: auto;
+}
+.bloco {
+display: flex;
+justify-content: center;
+}
+.outrosdestinos{
+display: none;
+}
+.botão input{
+width: 200px;
+height: 30px;
+border: 2px solid rgb(22, 0, 224);
+border-radius: 10px;
+background-color: white;
+}
+.relogio,
+.km,
+.lacre,
+.nf,
+.nome,
+.destino,
+.outrosdestinos,
+.carga,
+.malotes,
+.extra,
+.especificacao_carga,
+.botão {
+width: 100%;
+max-width: 500px;
+margin-top: 1rem;
+font-size: 1.5rem;
+}
+.relogio input,
+.km input,
+.lacre input,
+.nf input,
+.nome select,
+.destino,
+.outrosdestinos input,
+.carga select,
+.malotes input,
+.extra select,
+.especificacao_carga input,
+.botão {
+width: 50%;
+max-width: 500px;
+margin-top: 1rem;
+font-size: 1.2rem;
+border: 1rem;
+border-radius: 5px;
+}
+@media only screen and (min-width: 1024px) {
+.bloco {
+    flex-wrap: wrap;
+}
+.relogio,
+.km,
+.lacre,
+.nf,
+.nome,
+.destino,
+.outrosdestinos,
+.carga,
+.malotes,
+.extra,
+.especificacao_carga,
+.botão {
+    width: calc(50% - 2rem);
+}
+}
+
+/*------------------------------------------------------------------*/
+
+.placai_entrada input{
+    font-size: 1rem;
+    border: 1rem;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+}
+@media (max-width: 1024px) {
+    .placai_entrada input {
+        font-size: 1rem;
+        text-align: center;
+        padding: 3px;
+    }
+}
+.relogio_entrada,
+.km_entrada,
+.lacre_entrada,
+.nf_entrada,
+.malotes_entrada,
+.botão {
+width: 100%;
+max-width: 500px;
+margin-top: 1rem;
+font-size: 1.5rem;
+}
+.relogio_entrada input,
+.km_entrada input,
+.lacre_entrada input,
+.nf_entrada input,
+.malotes_entrada input,
+.botão {
+width: 50%;
+max-width: 500px;
+margin-top: 1rem;
+font-size: 1.2rem;
+border: 1rem;
+border-radius: 5px;
+}
+@media only screen and (min-width: 1024px) {
+.bloco {
+    flex-wrap: wrap;
+}
+.relogio_entrada,
+.km_entrada,
+.lacre_entrada,
+.nf_entrada,
+.malotes_entrada,
+.botão {
+    width: calc(50% - 2rem);
+}
+}
+
+/*------------------------------------------------------------------*/
+
+.cabeçalho {
+text-align: center;
+color: black;
+font-family: "Times New Roman", Times, serif;
+font-size: 2rem;
+text-decoration: underline;
+margin: 0;
+}
+.placat_entrada select {
+font-size: 18px;
+border: 1.5px solid black;
+padding: 1.5px;
+border: 0;
+border-radius: 5px;
+cursor: pointer;
+}
+.placat_entrada input {
+font-size: 1rem;
+border: 1rem;
+border-radius: 5px;
+padding: 3px;
+text-align: center;
+}
+@media (max-width: 1024px) {
+.cabeçalho {
+    font-size: 1.5rem;
+}
+.placat_entrada input {
+    font-size: 1rem;
+    text-align: center;
+    padding: 3px;
+}
+}
+.carga_terc,
+.cnpj,
+.id,
+.motorista,
+.ajudante,
+.paletes,
+.chapelex,
+.nfs,
+.botão {
+width: 100%;
+max-width: 600px;
+margin-top: 1rem;
+font-size: 1.5rem;
+}
+.carga_terc select,
+.cnpj input,
+.id input,
+.motorista input,
+.ajudante input,
+.paletes,
+.chapelex input,
+.nfs input,
+.botão {
+width: 50%;
+max-width: 500px;
+margin-top: 1rem;
+font-size: 1.2rem;
+border: 1rem;
+border-radius: 5px;
+}
+@media only screen and (min-width: 1024px) {
+.bloco {
+    flex-wrap: wrap;
+}
+.carga_terc,
+.cnpj,
+.id,
+.motorista,
+.ajudante,
+.paletes,
+.chapelex,
+.nfs,
+.botão {
+    width: calc(50% - 2rem);
+}
+}
+
+input[type='radio']{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    width: 18px;
+    height: 18px;
+    
+    border: 2px solid rgba(0,174,239,255);
+    border-radius: 50%;
+    
+    &:checked {
+        background-color: rgba(226,26,34,255);
+    }
+}
+input[type="radio"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.relogio_saida,
+.descarga,
+.radio-container,
+.pago,
+.paletes,
+.chapelex,
+.nfs,
+.botão {
+width: 100%;
+max-width: 500px;
+margin-top: 1rem;
+font-size: 1.5rem;
+}
+.relogio_saida input,
+.paletes input,
+.paletes input,
+.nfs input,
+.radio-container input[type= "text"],
+.botão {
+width: 50%;
+max-width: 500px;
+margin-top: 1rem;
+font-size: 1.2rem;
+border: 1rem;
+border-radius: 5px;
+}
+@media only screen and (min-width: 1024px) {
+.bloco {
+    flex-wrap: wrap;
+}
+.relogio_saida,
+.descarga,
+.radio-container,
+.pago,
+.paletes,
+.chapelex,
+.nfs,
+.botão {
+    width: calc(50% - 2rem);
+}
+}
+/*------------------------------------------------------------------*/
+
+
+.usuario{ /* verificar este CSS */
+    text-align: left;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { /* verificar este CSS */
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,230 @@
+{% include 'porteiros/base/cad_style.html' %}
+{% include 'porteiros/base/cad_base.html' %}
+
+<style>
+  
+</style>
+<div class="container">
+
+  <form action="{% url 'cadastro_terceiros' %}" method="post" autocomplete="off" onsubmit="return validateForm()">
+    {% csrf_token %}
+
+    <hr>
+      <nav>
+        <div class="placat_entrada">
+          <label style="font-size: 1.4rem">Placa: </label>
+          <input type="text" name="placa_entrada" id="placa-entrada" oninput="this.value = this.value.toUpperCase()" onkeypress="buscarPorTeclaEnter(event)" onblur="buscarPorMudancaCampo()" required><br>
+          <label style="font-size: 1.4rem">Veículo: </label>
+          <input type="text" name="veiculo_entrada" oninput="this.value = this.value.toUpperCase()" required>
+        </div>
+        
+        <div class="cabeçalho">Terceiros</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+      </nav>
+    <hr>
+  
+    <div class="titulo">
+        <h2 style="font-size: 2.5rem; position: absolute;">ENTRADA</h2><br>
+      
+      <div class="bloco">
+        <div class="relogio">
+          <input type="text" name="data" id="data_hora_input" value="{{ data_hora_atual }}" disabled readonly>
+        </div>
+      </div>
+    
+      <div class="bloco">
+        <div class="carga_terc">
+          <label for="">Carga:</label>
+          <select name="carga_entrada" style="cursor: pointer;" required>
+              <option disabled selected>...</option>
+              <option>ADM</option>
+              <option>FRIGORÍFICO</option>
+              <option>MANUTENÇÃO</option>
+              <option>OFICINA</option>
+              <option>SECA</option>
+              <option>OUTROS</option>
+          </select>
+        </div>
+
+        <div class="cnpj">
+          <label for="">CNPJ da Empresa:</label>
+          <input id="cnpj-input" type="number" name="cnpj" required>
+          <input id="nome-input" class="id" type="text" name="nome" disabled>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="motorista">
+          <label>Motorista</label>
+          <input type="text" name="motorista" oninput="this.value = this.value.toUpperCase()" required>
+        </div>
+
+        <div class="ajudante">
+          <label>Nº de Ajudantes:</label>
+          <input type="number" name="ajudante" oninput="this.value = this.value.toUpperCase()" required>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="paletes">
+          <label>QTDE Paletes Recebidos:</label>
+          <input type="number" name="paletes" required>
+        </div>
+
+        <div class="chapelex">
+          <label>QTDE Chapelex Recebidos:</label>
+          <input type="number" name="chapelex" required>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="nfs">
+          <label class="index">NF'S de Entrada:</label><br>
+
+          <label>Prefixo:</label>
+          <input type="number" name="nfs_prefixo" required><br>
+
+          <label>De:</label>
+          <input type="number" name="nfs_de" required><br>
+
+          <label>Até:</label>
+          <input type="number" name="nfs_ate" required><br>
+
+          <label>Exceto:</label>
+          <input type="number" name="nfs_exceto" required><br>
+
+          <label>Apenas:</label>
+          <input type="number" name="nfs_apenas" required>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="botão">
+          <input class="Salvar" type="submit" value="Salvar" style="cursor: pointer;">
+      
+          <a href="{% url 'cadastro_terceiros' %}">
+            <input type="button" id="cancelar" value="Cancelar" style="cursor: pointer;">
+          </a>
+      
+          <a href="{% url 'cadastro' %}">
+            <input type="button" id="sair" value="Sair" style="cursor: pointer;">
+          </a>
+        </div>
+      </div>
+    </div>    
+  </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  function atualizarRelogio() {
+    var dataHoraAtual = new Date().toLocaleString();
+    document.getElementById("data_hora_input").value = dataHoraAtual;
+  }
+
+  atualizarRelogio();
+
+  setInterval(atualizarRelogio, 1000); 
+
+  //--------------------------------------------------------
+
+  function validateForm() {
+    var inputs = document.getElementsByTagName('input');
+    var selects = document.getElementsByTagName('select');
+    var isValid = true;
+
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].hasAttribute('required') && inputs[i].value === '') {
+        isValid = false;
+        break;      
+      }
+    }
+
+    for (var i = 0; i < selects.length; i++) {
+      if (selects[i].hasAttribute('required') && selects[i].value === '') {
+        isValid = false;
+        break;      
+      }
+    }
+
+    if (!isValid) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+    }
+
+    return isValid;
+  }
+
+  //----------------------------------------------------------
+
+  $(document).ready(function() {
+    $('input[name="cnpj"]').change(function(event) {
+      event.preventDefault(); 
+  
+      var cnpj = $(this).val();
+  
+      var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+  
+      $.ajax({
+        url: '/verificar_cnpj/',
+        method: 'POST',
+        headers: {'X-CSRFToken': csrftoken},
+        data: {cnpj: cnpj, csrfmiddlewaretoken: csrftoken}, 
+        success: function(response) {
+          if (response.error) {
+            var confirmarCadastro = confirm('O CNPJ não está cadastrado. Deseja cadastrar agora?');
+            if (confirmarCadastro) {
+              window.location.href = '/cadastro_cnpj_terceiros/';
+            }
+            $('#nome-input').val('');
+            $('#resultado-cadastro').text(response.error);
+          } else {
+            $('#nome-input').val(response.nome); 
+            $('#resultado-cadastro').text('');
+          }
+        }
+      });
+    });
+  });    
+
+  //------------------------------------------------------------
+
+  function buscarPorTecla() {
+    const placaEntrada = document.getElementById('placa-entrada').value.toUpperCase();
+    const url = '{% url "busca_terceiros" %}';  
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}',  
+      },
+      data: JSON.stringify({ placa: placaEntrada }),
+      dataType: 'json',
+      success: function(data) {
+        if (data.placa_entrada_existente && data.placa_saida_existente) {
+  
+        } else if (data.placa_entrada_existente) {
+          const placa = encodeURIComponent(placaEntrada);
+          window.location.href = '{% url "cadastro_terceiros_saida" %}?placa=' + placa; 
+        } else {
+
+        }
+      },
+      error: function(error) {
+        console.error('Erro na requisição:', error);
+      }
+    });
+  }
+
+  document.getElementById('placa-entrada').addEventListener('input', buscarPorTecla);
+
+</script>
+

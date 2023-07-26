@@ -1,0 +1,309 @@
+{% extends 'porteiros/base/cad_base.html' %}
+
+{% block content %}
+
+<div class="container">
+  
+    
+  <form action="{% url 'cadastro_inter' %}" method="post" autocomplete="off" onsubmit="return validateForm()">
+        {% csrf_token %}
+    <hr>
+      <nav>  
+      
+        <div class="placa">
+          <select name="placa" class="edit" required id="placa-select">
+            <option value="" disabled selected>Selecione a Placa</option>
+            {% for transporte in veiculos %}
+              <option value="{{ transporte.placa }}">{{ transporte.placa }}</option>
+            {% endfor %}
+          </select>
+            <input type="text" name="veiculo" id="veiculo-input" required readonly>
+        </div>
+
+        <div class="inter">Inter</div>
+
+        <div></div>
+        <div></div>
+        <div></div>
+      </nav>
+    <hr>
+    
+  
+
+    
+      <div class="titulo">
+          <h2 style="font-size: 2.5rem; position: absolute;">SAÍDA</h2><br>
+      
+        <div class="bloco">
+          <div class="relogio">
+              <input type="text" name="data" id="data_hora_input" value="{{ data_hora_atual }}" disabled readonly>
+          </div>
+        </div>
+
+        <div class="bloco">
+          <div class="km">
+              <label for="">Km Saída:</label>
+              <input type="number" name="km_saida" required>
+          </div>
+          
+          <div class="lacre">
+            <label for="">Lacre Saída:</label>
+            <input type="text" name="lacre_saida" oninput="this.value = this.value.toUpperCase()" style="font-size: 1.2rem" required>
+          </div>
+        </div>
+      
+        <div class="bloco">
+          <div class="nf">
+              <label for="">NF'S Saída:</label>
+              <input type="number" name="nfs_saida" required>
+          </div>
+        
+          <div class="nome">
+            <label for="">Motorista:</label>
+            <select name="nome" required style="cursor: pointer;">
+              <option disabled selected>...</option>
+              {% for piloto in motoristas %}
+                <option value="{{ piloto.nome }}">{{ piloto.nome }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="bloco">
+          <div class="destino">
+            <label for="">Destino:</label>
+            <select name="destino" id="destino" required style="cursor: pointer;" multiple onchange="mostrarCampoInput()">
+                <option disabled selected>...</option>
+                <option value="OUTROS">OUTROS</option>
+                <option>ALCANTARA</option>
+                <option>BANGU</option>
+                <option>BARRA</option>
+                <option>CAMPO GRANDE</option>
+                <option>CASCADURA</option>
+                <option>CEASA</option>
+                <option>COELHO NETO</option>
+                <option>COPACABANA</option>
+                <option>CURTUME</option>
+                <option>DUTRA</option>
+                <option>INHAUMA</option>
+                <option>NITERÓI</option>
+                <option>NOVA IGUAÇU</option>
+                <option>PARADA DE LUCAS</option>
+                <option>PAVUNA</option>
+                <option>PENHA</option>
+                <option>PILARES</option>
+                <option>REALENGO</option>
+                <option>RECREIO</option>
+                <option>TANQUE</option>
+                <option>TIRADENTES</option>
+                <option>VILA CRUZEIRO</option>
+                <option>VISTA ALEGRE</option>
+            </select>
+          </div>
+          
+          <div id="campoOutros" class="outrosdestinos">
+              <label for="outrosDestinos">Digite outros destinos:</label><br>
+              <input type="text" id="outrosDestinos" name="outrosDestinos" oninput="this.value = this.value.toUpperCase()" disabled>
+          </div>
+        </div>
+        
+        <div class="bloco">
+          <div class="carga">
+            <label for="">Carga:</label>
+            <select name="carga" id="" required style="cursor: pointer;">
+                <option disabled selected>...</option>
+                <option>ADM</option>
+                <option>FRIGORÍFICO</option>
+                <option>GELADEIRA</option>
+                <option>MANUTENÇÃO</option>
+                <option>OFICINA</option>
+                <option>PADARIA</option>
+                <option>REFEITÓRIO</option>
+                <option>SANTUÁRIO</option>
+                <option>SECA</option>
+                <option>OUTROS</option>
+            </select>
+          </div>
+        
+          <div class="malotes">
+            <label for="">QTDE Malotes Saída:</label>
+            <input type="number" name="qtde_malotes_saida" required>
+          </div>
+        </div>
+        
+        <div class="bloco">
+          <div class="extra">
+            <label for="">Carga Extra:</label>
+            <select name="carga_extra" id="carga_extra" required onchange="toggleEspecificacaoCarga()" style="cursor: pointer;">
+              <option disabled selected>...</option>
+              <option value="SIM">SIM</option>
+              <option value="NÃO">NÃO</option>
+            </select>
+          </div>
+            
+          <div class="especificacao_carga">
+            <label for="">Especifique a Carga:</label>
+            <input type="text" name="especificacao_carga" id="especificacao_carga_input" oninput="this.value = this.value.toUpperCase()" required>
+          </div>
+        </div>
+
+        <div class="bloco">
+          <div class="botão">
+            <input class="Salvar" type="submit" value="Salvar" style="cursor: pointer;">
+        
+            <a href="{% url 'cadastro_inter' %}">
+              <input type="button" id="cancelar" value="Cancelar" style="cursor: pointer;">
+            </a>
+        
+            <a href="{% url 'cadastro' %}">
+              <input type="button" id="sair" value="Sair" style="cursor: pointer;">
+            </a>
+          </div>
+        </div>
+
+      </div>
+  </form>  
+
+</div>
+    
+<script>
+  function validateForm() {
+    var inputs = document.getElementsByTagName('input');
+    var selects = document.getElementsByTagName('select');
+    var isValid = true;
+
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].hasAttribute('required') && inputs[i].value === '') {
+        isValid = false;
+        break;      
+      }
+    }
+
+    for (var i = 0; i < selects.length; i++) {
+      if (selects[i].hasAttribute('required') && selects[i].value === '') {
+        isValid = false;
+        break;      
+      }
+    }
+
+    if (!isValid) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+    }
+
+    return isValid;
+  }
+
+  //----------------------------------------
+
+  function atualizarRelogio() {
+    var dataHoraAtual = new Date().toLocaleString();
+    document.getElementById("data_hora_input").value = dataHoraAtual;
+  }
+
+  atualizarRelogio();
+
+  setInterval(atualizarRelogio, 1000); 
+
+  //------------------------------------------
+
+  function toggleEspecificacaoCarga() {
+    var cargaExtraSelect = document.getElementById('carga_extra');
+    var especificacaoCargaInput = document.getElementById('especificacao_carga_input');
+
+    if (cargaExtraSelect.value === 'SIM') {
+      especificacaoCargaInput.removeAttribute('disabled');
+      especificacaoCargaInput.setAttribute('required', 'required');
+    } else {
+      especificacaoCargaInput.setAttribute('disabled', 'disabled');
+      especificacaoCargaInput.removeAttribute('required');
+    }
+  }
+
+  toggleEspecificacaoCarga();
+
+  //----------------------------------------------
+
+  $(document).ready(function() {
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+  
+    $('select[name="placa"]').on('change', function() {
+      var placaSelecionada = $(this).val();
+      var csrfToken = getCookie('csrftoken'); 
+  
+      $.ajax({
+        url: '/verificar_entrada/',
+        type: 'POST',
+        data: {placa: placaSelecionada, csrfmiddlewaretoken: csrfToken},
+        success: function(response) {
+          if (response.existe_entrada && response.existe_entrada_inter) {
+            // Existe entrada em CadastroInter e CadastroInterEntrada
+            return 'cadastro_inter';
+          } else if (response.existe_entrada) {
+            // Apenas existe entrada em CadastroInter
+            window.location.href = '/cadastro_inter_entrada/?placa=' + placaSelecionada;
+          }
+        }
+      });
+    });
+  });
+  
+
+  //----------------------------------------------
+
+  function buscarVeiculo(placa) {
+    $.ajax({
+      url: '/buscar_veiculo/',
+      type: 'POST',
+      data: {placa: placa, csrfmiddlewaretoken: '{{ csrf_token }}'},
+      success: function(response) {
+        $('#veiculo-input').val(response.veiculo);
+      }
+    });
+  }
+
+  $('#placa-select').on('change', function() {
+    var placaSelecionada = $(this).val();
+    buscarVeiculo(placaSelecionada);
+  });
+
+  //-----------------------------------------------------------
+
+  const selectElement = document.getElementById("destino");
+  selectElement.addEventListener("change", () => {
+      const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+      console.log("Opções selecionadas:", selectedOptions);
+  });
+
+  //----------------------------------------------------------
+
+  function mostrarCampoInput() {
+    const selectElement = document.getElementById("destino");
+    const campoOutros = document.getElementById("campoOutros");
+    const inputOutros = document.getElementById("outrosDestinos");
+
+    if (selectElement.value === "OUTROS") {
+        campoOutros.style.display = "block";
+        inputOutros.disabled = false;
+    } else {
+        campoOutros.style.display = "none";
+        inputOutros.disabled = true;
+    }
+  }
+
+</script>
+    
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% extends 'porteiros/base/base.html' %}
+
+{% block content %}
+
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+
+<br><br><br><br>
+
+    <label for="nome">Motorista:</label>
+    <input type="text" id="nome" name="nome" placeholder="Digite o nome do motorista" maxlength="100" required oninput="this.value = this.value.toUpperCase()">
+
+    <input class="cadastrar" type="submit" value="Cadastrar">
+
+</form>
+
+<a href="{% url 'cadastro' %}">
+    <button>Voltar</button>
+</a>
+
+<style>
+    button {
+        background-color: rgba(0,174,239,255);
+        transition: background-color 0.3s; /* Efeito de transição suave */
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        height: 30px;
+        color: #fff;
+        font-size: 15px;
+        
+    }
+    button:hover {
+        background-color: rgba(226,26,34,255);
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'porteiros/base/base.html' %}
+
+{% block content %}
+
+<div>     
+        
+     <form method="post" autocomplete="off">
+      {% csrf_token %}
+      <br><br>
+        <label for="matricula">Matrícula:</label>
+        <input type="text" name="matricula" placeholder="Digite a matrícula" pattern="\d*" maxlength="10" required><br>
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" placeholder="Digite a senha" required><br>
+        <button class="mostar_senha" type="button" onclick="mostrarSenha()">Mostrar Senha</button>
+        <a href="#">
+        <input type="submit" value="Login">
+        </a>
+     </form>
+    
+     <script>
+      function mostrarSenha() {
+        var senhaInput = document.getElementById("senha");
+        if (senhaInput.type === "password") {
+          senhaInput.type = "text";
+        } else {
+          senhaInput.type = "password";
+        }
+      }
+      </script> 
+    
+      {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+    
+</div>
+
+{% endblock %}

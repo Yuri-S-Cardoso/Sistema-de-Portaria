@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/relatorio.css' %}">
+    <img src="{% static 'images/logo.png' %}">
+
+
+    <title>Relatório Terceiros Saída</title>
+
+</head>
+<body>
+    <h1 class='titulo'>Terceiros Saída</h1>
+    <br><br><br>
+
+    <form method="GET" action="">
+        <div class="tabela">
+            <div class="incio">
+                <label for="data_inicio">Data de início:</label><br>
+                <input type="date" id="data_inicio" name="data_inicio" value="{{ selected_data_inicio }}"><br>    
+            </div>
+
+            <div class="termino">
+                <label for="data_fim">Data de término:</label><br>
+                <input type="date" id="data_fim" name="data_fim" value="{{ selected_data_fim }}"><br>
+            </div>
+
+            <div class="placa">
+                <label for="placa">Selecione a placa:</label><br>
+                <select id="placa" name="placa">
+                    <option value="">Todas</option>
+                    {% for placa in placas %}
+                        <option value="{{ placa }}">{{ placa }}</option>
+                    {% endfor %}
+                </select><br>
+            </div>
+        </div>
+    
+        <button type="submit" class="filtrar">Filtrar</button>
+    </form>
+
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Data</th>
+                <th>Descarga</th>
+                <th>Motivo</th>
+                <th>Descarga Paga</th>
+                <th>Paletes</th>
+                <th>Chapelex</th>
+                <th>NF's</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.placa_saida }}</td>
+                <td>{{ item.data_saida }}</td>
+                <td>{{ item.descarga }}</td>
+                <td>{{ item.motivo }}</td>
+                <td>{{ item.descarga_paga }}</td>
+                <td>{{ item.paletes_saida }}</td>
+                <td>{{ item.chapelex_saida }}</td>
+                <td>{{ item.nfs_prefixo_saida }};
+                    {{ item.nfs_de_saida }};
+                    {{ item.nfs_ate_saida }};
+                    {{ item.nfs_exceto_saida }};
+                    {{ item.nfs_apenas_saida }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>        
+    </table>
+    <br>
+
+    <button onclick="window.print()">Imprimir</button>
+
+    <button onclick="closeTab()">Voltar</button>
+
+    <script>
+        function closeTab() {
+            window.close();
+        }
+
+        var selectedDataInicio = "{{ selected_data_inicio }}";
+        var selectedDataFim = "{{ selected_data_fim }}";
+
+        if (selectedDataInicio !== "") {
+            document.getElementById('data_inicio').value = selectedDataInicio;
+        }
+
+        if (selectedDataFim !== "") {
+            document.getElementById('data_fim').value = selectedDataFim;
+        }
+
+        var today = new Date();
+        var formattedDate = today.toISOString().split('T')[0];
+
+        if (document.getElementById('data_inicio').value === "") {
+            document.getElementById('data_inicio').value = formattedDate;
+        }
+
+        if (document.getElementById('data_fim').value === "") {
+            document.getElementById('data_fim').value = formattedDate;
+        }
+    </script>
+</body>
+</html>

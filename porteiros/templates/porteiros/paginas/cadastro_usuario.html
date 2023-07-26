@@ -1,0 +1,66 @@
+{% extends 'porteiros/base/base.html' %}
+
+{% block content %}
+<style>
+    .nivel{
+        display: flex;
+        padding: 1rem;
+        margin-right: 05px;
+    }
+    button {
+        background-color: rgba(0,174,239,255);
+        transition: background-color 0.3s; /* Efeito de transição suave */
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        height: 30px;
+        color: #fff;
+        font-size: 15px;
+        padding: 0px 25px;
+        
+    }
+    button:hover {
+        background-color: rgba(226,26,34,255);
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+<body>
+
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite o nome" maxlength="50" required oninput="this.value = this.value.toUpperCase()"><br>
+    
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula" placeholder="Digite a matrícula" pattern="\d*" maxlength="10" required oninput="this.value = this.value.toUpperCase()"><br>
+    
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" placeholder="Digite a senha" required><br>
+    
+        <button class="mostrar_senha" type="button" onclick="mostrarSenha()">Mostrar Senha</button>
+    
+    <div class="nivel">
+        <label for="tipo">Nível do usuário:</label><br>
+        <input type="radio" id="gerente" name="nivel" value="gerente" required>
+        <label for="gerente">Gerente</label><br>
+        <input type="radio" id="funcionario" name="nivel" value="funcionario" required>
+        <label for="funcionario">Funcionário</label><br>
+    </div>
+        <button class="cadastar" value="cadastrar" style="cursor: pointer;">Cadastrar</button>
+    </form>
+    
+    <script>
+        function mostrarSenha() {
+          var senhaInput = document.getElementById("senha");
+          if (senhaInput.type === "password") {
+            senhaInput.type = "text";
+          } else {
+            senhaInput.type = "password";
+          }
+        }
+        </script> 
+</body>
+ 
+{% endblock %}

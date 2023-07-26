@@ -1,0 +1,82 @@
+{% extends 'porteiros/base/base.html' %}
+
+{% block content %}
+<br><br>
+<label for="inter">Inter:</label>
+<select id="inter" class="form-control" style="cursor: pointer;">
+    <option disabled selected>...</option>
+    <option value="saida">Saída</option>
+    <Option value="entrada">Entrada</Option>
+</select>
+
+<br><br><br><br><br>
+
+<label for="terceiros">Terceiros:</label>
+<select id="terceiros" class="form-control" style="cursor: pointer;">
+    <option disabled selected>...</option>
+    <option value="entrada">Entrada</option>
+    <Option value="saida">Saída</Option>
+</select>
+
+<br><br><br><br>
+<a href="{% url 'cadastro' %}">
+<button>Voltar</button>
+</a>
+
+<script>
+    document.getElementById("inter").addEventListener("change", function() {
+        var selectedOption = this.value;
+        if (selectedOption === "saida") {
+            window.open("/relatorio_inter_saida/", "_blank");
+        }
+    });
+
+    //---------------------------------------------------------------
+
+    document.getElementById("inter").addEventListener("change", function() {
+        var selectedOption = this.value;
+        if (selectedOption === "entrada") {
+            window.open("/relatorio_inter_entrada/", "_blank");
+        }
+    });
+
+    //---------------------------------------------------------------
+
+    document.getElementById("terceiros").addEventListener("change", function() {
+        var selectedOption = this.value;
+        if (selectedOption === "entrada") {
+            window.open("/relatorio_terceiros_entrada/", "_blank");
+        }
+    });
+
+    //---------------------------------------------------------------
+
+    document.getElementById("terceiros").addEventListener("change", function() {
+        var selectedOption = this.value;
+        if (selectedOption === "saida") {
+            window.open("/relatorio_terceiros_saida/", "_blank");
+        }
+    });
+   
+</script>
+<style>
+    button {
+        background-color: rgba(0,174,239,255);
+        transition: background-color 0.3s; /* Efeito de transição suave */
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        height: 30px;
+        color: #fff;
+        font-size: 15px;
+        
+    }
+    button:hover {
+        background-color: rgba(226,26,34,255);
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+{% endblock %}

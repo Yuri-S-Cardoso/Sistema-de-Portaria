@@ -1,0 +1,336 @@
+
+body {
+    background-image: url('/static/images/background.jpg');
+}
+.cad_base{
+    padding: 0.2rem 32.7rem;
+    border: 2px solid rgb(22, 0, 224);
+    border-radius: 3%;
+    background-color:#a09d9db3;
+    text-align:center;
+}
+.cad{
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+}
+.inter{
+    color:black;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+    text-decoration: underline;
+}
+.cabeçalho{
+    color:black;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #a09d9db3;
+}
+.placa{
+    position: absolute;
+    top: 9.4rem;
+    left: 3rem;
+}
+.placa_entrada{
+    position: absolute;
+    top: 8.3rem;
+    left: 1.7rem;
+}
+.placa_entrada input{
+    font-size: 1.1rem;
+    border: 1rem;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+}
+.placa input{
+    font-size: 1.2rem;
+    border: 1rem;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+}
+.veiculo_entrada{
+    position: absolute;
+    top: 8.3rem;
+    left: 17.5rem;
+}
+.veiculo{
+    position: absolute;
+    top: 9.4rem;
+    left: 16rem;
+}
+.veiculo_entrada input{
+    font-size: 1.1rem;
+    border: 1rem;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+}
+.veiculo input{
+    font-size: 1.2rem;
+    border: 1rem;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+}
+.placa select{
+    font-size: 18px;
+    border: 1.5px solid black;
+    padding: 1.5px;
+    border: 0;
+    border-radius: 5px;
+}
+.usuario{
+    text-align: left;
+}
+
+.titulo{
+    text-align: center;
+    height: auto;
+}
+.relogio{
+    position: absolute;
+    top: 14.1rem;
+    left: 5rem;
+    font-size: 1.7rem;
+    height: auto;
+}
+.relogio input{
+    font-size: 1.2rem;
+}
+.km{
+    position: absolute;
+    top: 15.9rem;
+    left: 27rem;
+    font-size: 1.7rem;
+}
+.km input{
+    font-size: 1.2rem;
+}
+.lacre{
+    position: absolute;
+    top: 15.9rem;
+    left: 52rem;
+    font-size: 1.7rem;
+}
+.lacre input{
+    font-size: 1.2rem;
+}
+.nf{
+    position: absolute;
+    top:20.5rem;
+    left: 5rem;
+    font-size: 1.7rem;
+}
+.nf input{
+    font-size: 1.2rem;
+}
+.nome{
+    position: absolute;
+    top: 20.5rem;
+    left: 31rem;
+    font-size: 1.7rem;
+}
+.nome select{
+    font-size: 1.2rem;
+}
+.destino{
+    position: absolute;
+    top: 20.5rem;
+    left: 60rem;
+    font-size: 1.7rem;
+}
+.destino select{
+    font-size: 1.2rem;
+}
+.carga{
+    position: absolute;
+    top: 25.5rem;
+    left: 5rem;
+    font-size: 1.7rem;
+}
+.carga select{
+    font-size: 1.2rem;
+}
+.malotes{
+    position: absolute;
+    top: 25.5rem;
+    left: 24rem;
+    font-size: 1.7rem;
+}
+.malotes input{
+    font-size: 1.2rem;
+}
+.extra{
+    position: absolute;
+    top: 25.5rem;
+    left: 60rem;
+    font-size: 1.7rem;
+}
+.extra select{
+    font-size: 1.2rem;
+}
+.especificacao_carga{
+    position: absolute;
+    top: 31.5rem;
+    left: 24rem;
+    font-size: 1.7rem;
+}
+.especificacao_carga input{
+    font-size: 1.2rem;
+}
+.botão{
+    padding: 10px;
+    position: absolute;
+    top: 35rem;
+    left: 24rem;
+    cursor: pointer;    
+}
+.botão input{
+    width: 200px;
+    height: 30px;
+    border: 2px solid rgb(22, 0, 224);
+    border-radius: 10px;
+    background-color: white;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cnpj{
+    position: absolute;
+    top: 15.9rem;
+    left: 27rem;
+    font-size: 1.7rem;
+}
+.cnpj input{
+    font-size: 1.2rem;
+}
+.id{
+    font-size: 1.2rem;
+    width: 400px;
+}
+.carga_terc{
+    position: absolute;
+    top: 20rem;
+    left: 11rem;
+    font-size: 1.7rem;
+}
+.carga_terc select{
+    font-size: 1.2rem;
+}
+.motorista{
+    position: absolute;
+    top: 20rem;
+    left: 29rem;
+    font-size: 1.7rem;
+}
+.motorista input{
+    font-size: 1.2rem;
+    width: 17rem;
+}
+.ajudante{
+    position: absolute;
+    top: 20rem;
+    left: 56rem;
+    font-size: 1.7rem;
+}
+.ajudante input{
+    font-size: 1.2rem;
+    width: 40px;
+    text-align: center;
+}
+.paletes{
+    position: absolute;
+    top: 24rem;
+    left: 18rem;
+    font-size: 1.7rem;
+}
+.paletes input{
+    font-size: 1.2rem;
+    width: 50px;
+    text-align: center;
+}
+.chapelex{
+    position: absolute;
+    top: 24rem;
+    left: 42rem;
+    font-size: 1.7rem;
+}
+.chapelex input{
+    font-size: 1.2rem;
+    width: 50px;
+    text-align: center;
+}
+.nfs{
+    position: absolute;
+    top: 28rem;
+    left: 17rem;
+    font-size: 1.7rem;
+    text-align: center;
+}
+.nfs input{
+    font-size: 1.2rem;
+    width: 80px;
+    text-align: center;
+}
+.relogio_saida{
+    position: absolute;
+    top:19rem;
+    left: 7rem;
+    font-size: 1.7rem;
+    height: auto;
+}
+.relogio_saida input{
+    font-size: 1.2rem;
+}
+.radio-container {
+    display: inline-block;
+    vertical-align: middle;
+}
+  
+input[type="radio"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.descarga{
+    position: absolute;
+    top:18.5rem;
+    left: 30rem;
+    font-size: 1.7rem;
+    height: auto;
+}
+.pago{
+    position: absolute;
+    top:19rem;
+    left: 55rem;
+    font-size: 1.7rem;
+    height: auto;
+}
+input[type='radio']{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    width: 18px;
+    height: 18px;
+    
+    border: 2px solid blue;
+    border-radius: 50%;
+    
+    &:checked {
+        background-color: red;
+    }
+}

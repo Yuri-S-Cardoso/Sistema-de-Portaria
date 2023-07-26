@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/relatorio.css' %}">
+    <img src="{% static 'images/logo.png' %}">
+
+
+    <title>Relatório Inter Entrada</title>
+
+</head>
+<body>
+    <h1 class='titulo'>Inter Entrada</h1>
+    <br><br><br>
+
+    <form method="GET" action="">
+        <div class="tabela">
+            <div class="incio">
+                <label for="data_inicio">Data de início:</label><br>
+                <input type="date" id="data_inicio" name="data_inicio" value="{{ selected_data_inicio }}"><br>    
+            </div>
+
+            <div class="termino">
+                <label for="data_fim">Data de término:</label><br>
+                <input type="date" id="data_fim" name="data_fim" value="{{ selected_data_fim }}"><br>
+            </div>
+
+            <div class="placa">
+                <label for="placa">Selecione a placa:</label><br>
+                <select id="placa" name="placa">
+                    <option value="">Todas</option>
+                    {% for placa in placas %}
+                        <option value="{{ placa }}">{{ placa }}</option>
+                    {% endfor %}
+                </select><br>
+            </div>
+        </div>
+    
+        <button type="submit" class="filtrar">Filtrar</button>
+    </form>
+
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Data</th>
+                <th>Km Entrada</th>
+                <th>Lacre Entrada</th>
+                <th>NFS Entrada</th>
+                <th>Qtde Malotes Entrada</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.placa_entrada }}</td>
+                <td>{{ item.data_entrada }}</td>
+                <td>{{ item.km_entrada }}</td>
+                <td>{{ item.lacre_entrada }}</td>
+                <td>{{ item.nfs_entrada }}</td>
+                <td>{{ item.qtde_malotes_entrada }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+
+    <button onclick="window.print()">Imprimir</button>
+
+    <button onclick="closeTab()">Voltar</button>
+
+    <script>
+        function closeTab() {
+            window.close();
+        }
+
+        //--------------------------------------------
+
+        var selectedDataInicio = "{{ selected_data_inicio }}";
+        var selectedDataFim = "{{ selected_data_fim }}";
+
+        if (selectedDataInicio !== "") {
+            document.getElementById('data_inicio').value = selectedDataInicio;
+        }
+
+        if (selectedDataFim !== "") {
+            document.getElementById('data_fim').value = selectedDataFim;
+        }
+
+        var today = new Date();
+        var formattedDate = today.toISOString().split('T')[0];
+
+        if (document.getElementById('data_inicio').value === "") {
+            document.getElementById('data_inicio').value = formattedDate;
+        }
+
+        if (document.getElementById('data_fim').value === "") {
+            document.getElementById('data_fim').value = formattedDate;
+        }
+
+
+    </script>
+
+</body>
+</html>
