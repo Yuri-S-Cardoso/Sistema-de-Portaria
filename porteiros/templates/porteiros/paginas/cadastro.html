@@ -1,90 +1,70 @@
 {% extends 'porteiros/base/base.html' %}
 
 {% block content %}
-
-<body>
-    
+  <body>
     <div>
-        <br>
-        <br>
-        <label for="">Selecione:</label>
-        <select id="form-control" class="form-control" style="cursor: pointer;">
-            <option disabled selected>...</option>
-            <option value="inter">Inter</option>
-            <option value="terceiros">Terceiros</option>
-        </select>
-	    
+      <br />
+      <br />
+      <label for="">Selecione:</label>
+      <select id="form-control" class="form-control" style="cursor: pointer;">
+        <option disabled selected>...</option>
+        <option value="inter">Inter</option>
+        <option value="terceiros">Terceiros</option>
+      </select>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <a href="{% url 'relatorio' %}"><input type="button" value="Relatório" id="relatorio" /></a>
+      {% if request.session.nivel == 'gerente' %}
+        <a href="{% url 'cadastro_veiculo' %}"><input type="button" value="Cadastro de Veículo" id="cadastro_de_veiculo" oninput="this.value = this.value.toUpperCase()" /></a>
+        <a href="{% url 'cadastro_motorista' %}"><input type="button" value="Cadastro de Motorista" id="cadastro_de_motorista" oninput="this.value = this.value.toUpperCase()" /></a>
+        <a href="{% url 'cadastro_usuario' %}"><input type="button" value="Cadastro de usuário" id="cadastro_de_usuario" oninput="this.value = this.value.toUpperCase()" /></a>
+      {% else %}
+        <a href="{% url 'cadastro_veiculo' %}"><input type="button" value="Cadastro de Veículo" id="cadastro_de_veiculo" onclick="exibirAlerta(); return false;" oninput="this.value = this.value.toUpperCase()" /></a>
+        <a href="{% url 'cadastro_motorista' %}"><input type="button" value="Cadastro de Motorista" id="cadastro_de_motorista" onclick="exibirAlerta(); return false;" oninput="this.value = this.value.toUpperCase()" /></a>
+        <a href="{% url 'cadastro_usuario' %}"><input type="button" value="Cadastro de usuário" id="cadastro_de_usuario" onclick="exibirAlerta(); return false;" oninput="this.value = this.value.toUpperCase()" /></a>
+      {% endif %}
+
+      <script>
+        const selectElement = document.getElementById('form-control')
         
-        <a href="{% url 'relatorio' %}">
-            <input type="button" value="Relatório" id="relatorio">
-        </a>
-        {% if request.session.nivel == 'gerente' %}
-            <a href="{% url 'cadastro_veiculo' %}">
-                <input type="button" value="Cadastro de Veículo" id="cadastro_de_veiculo" oninput="this.value = this.value.toUpperCase()">
-            </a>
-            <a href="{% url 'cadastro_motorista' %}">
-                <input type="button" value="Cadastro de Motorista" id="cadastro_de_motorista" oninput="this.value = this.value.toUpperCase()">
-            </a>
-            <a href="{% url 'cadastro_usuario' %}">
-                <input type="button" value="Cadastro de usuário" id="cadastro_de_usuario" oninput="this.value = this.value.toUpperCase()">
-            </a>
-        {% else %}
-            <a href="{% url 'cadastro_veiculo' %}">
-                <input type="button" value="Cadastro de Veículo" id="cadastro_de_veiculo" onclick="exibirAlerta(); return false;" oninput="this.value = this.value.toUpperCase()">
-            </a>
-            <a href="{% url 'cadastro_motorista' %}">
-                <input type="button" value="Cadastro de Motorista" id="cadastro_de_motorista" onclick="exibirAlerta(); return false;" oninput="this.value = this.value.toUpperCase()">
-            </a>
-            <a href="{% url 'cadastro_usuario' %}">
-                <input type="button" value="Cadastro de usuário" id="cadastro_de_usuario" onclick="exibirAlerta(); return false;" oninput="this.value = this.value.toUpperCase()">
-            </a>
-        {% endif %}
-    
-
-        <script>
-            const selectElement = document.getElementById("form-control");
-
-            selectElement.addEventListener("change", function() {
-                const selectedOption = selectElement.value;
-
-                if (selectedOption === "inter") {
-                window.location.href = "{% url 'cadastro_inter' %}";
-                } else if (selectedOption === "terceiros") {
-                window.location.href = "{% url 'cadastro_terceiros' %}";
-                }
-            });
-
-            function exibirAlerta() {
-                alert("Acesso negado. Você não tem permissão para acessar essa funcionalidade!");
-            }
-        </script>
-
+        selectElement.addEventListener('change', function () {
+          const selectedOption = selectElement.value
+        
+          if (selectedOption === 'inter') {
+            window.location.href = "{% url 'cadastro_inter' %}"
+          } else if (selectedOption === 'terceiros') {
+            window.location.href = "{% url 'cadastro_terceiros' %}"
+          }
+        })
+        
+        function exibirAlerta() {
+          alert('Acesso negado. Você não tem permissão para acessar essa funcionalidade!')
+        }
+      </script>
     </div>
-</body>
+  </body>
 
-<style>
-    input[type="button"] {
-        background-color: rgba(0,174,239,255);
-        transition: background-color 0.3s; /* Efeito de transição suave */
-        border-radius: 25px;
-        border: none;
-        cursor: pointer;
-        height: 30px;
-        color: #fff;
-        font-size: 15px;
+  <style>
+    input[type='button'] {
+      background-color: rgba(0, 174, 239, 255);
+      transition: background-color 0.3s;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      height: 30px;
+      color: #fff;
+      font-size: 15px;
     }
-    input[type="button"]:hover {
-        background-color: rgba(226,26,34,255);
-        border-radius: 25px;
-        border: none;
-        cursor: pointer;
+    input[type='button']:hover {
+      background-color: rgba(226, 26, 34, 255);
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
     }
-</style>
-
+  </style>
 {% endblock %}

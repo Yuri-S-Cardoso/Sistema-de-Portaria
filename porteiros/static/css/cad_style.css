@@ -1,336 +1,214 @@
+/* Reset básico para remover margens e paddings padrão */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
+    position: relative;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
     background-image: url('/static/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0.5; 
+
+    z-index: -1;
 }
-.cad_base{
-    padding: 0.2rem 32.7rem;
-    border: 2px solid rgb(22, 0, 224);
-    border-radius: 3%;
-    background-color:#a09d9db3;
-    text-align:center;
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(37, 42, 58, 0.5);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgb(0, 0, 0);
 }
-.cad{
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.cad_base {
+    padding: 1rem;
+    border: 2px solid #1600E0;
+    border-radius: 8px;
+    background-color: rgba(160, 157, 157, 0.7);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+
+.cad {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1rem;
     color: black;
 }
-.inter{
-    color:black;
+
+.inter,
+.cabeçalho {
     text-align: center;
-    font-family: "Times New Roman", Times, serif;
     font-size: 2rem;
     text-decoration: underline;
-}
-.cabeçalho{
-    color:black;
-    text-align: center;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 2rem;
-    text-decoration: underline;
+    margin-bottom: 1rem;
 }
 
-.topnav {
-    overflow: hidden;
-    background-color: #a09d9db3;
-}
-.placa{
-    position: absolute;
-    top: 9.4rem;
-    left: 3rem;
-}
-.placa_entrada{
-    position: absolute;
-    top: 8.3rem;
-    left: 1.7rem;
-}
-.placa_entrada input{
-    font-size: 1.1rem;
-    border: 1rem;
+.placa select,
+.placa input,
+.placat_entrada input {
+    font-size: 1rem;
+    border: 1px solid black;
+    padding: 8px;
     border-radius: 5px;
-    padding: 3px;
-    text-align: center;
-}
-.placa input{
-    font-size: 1.2rem;
-    border: 1rem;
-    border-radius: 5px;
-    padding: 3px;
-    text-align: center;
-}
-.veiculo_entrada{
-    position: absolute;
-    top: 8.3rem;
-    left: 17.5rem;
-}
-.veiculo{
-    position: absolute;
-    top: 9.4rem;
-    left: 16rem;
-}
-.veiculo_entrada input{
-    font-size: 1.1rem;
-    border: 1rem;
-    border-radius: 5px;
-    padding: 3px;
-    text-align: center;
-}
-.veiculo input{
-    font-size: 1.2rem;
-    border: 1rem;
-    border-radius: 5px;
-    padding: 3px;
-    text-align: center;
-}
-.placa select{
-    font-size: 18px;
-    border: 1.5px solid black;
-    padding: 1.5px;
-    border: 0;
-    border-radius: 5px;
-}
-.usuario{
-    text-align: left;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
 }
 
-.titulo{
-    text-align: center;
-    height: auto;
+.botão {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
 }
-.relogio{
-    position: absolute;
-    top: 14.1rem;
-    left: 5rem;
-    font-size: 1.7rem;
-    height: auto;
-}
-.relogio input{
-    font-size: 1.2rem;
-}
-.km{
-    position: absolute;
-    top: 15.9rem;
-    left: 27rem;
-    font-size: 1.7rem;
-}
-.km input{
-    font-size: 1.2rem;
-}
-.lacre{
-    position: absolute;
-    top: 15.9rem;
-    left: 52rem;
-    font-size: 1.7rem;
-}
-.lacre input{
-    font-size: 1.2rem;
-}
-.nf{
-    position: absolute;
-    top:20.5rem;
-    left: 5rem;
-    font-size: 1.7rem;
-}
-.nf input{
-    font-size: 1.2rem;
-}
-.nome{
-    position: absolute;
-    top: 20.5rem;
-    left: 31rem;
-    font-size: 1.7rem;
-}
-.nome select{
-    font-size: 1.2rem;
-}
-.destino{
-    position: absolute;
-    top: 20.5rem;
-    left: 60rem;
-    font-size: 1.7rem;
-}
-.destino select{
-    font-size: 1.2rem;
-}
-.carga{
-    position: absolute;
-    top: 25.5rem;
-    left: 5rem;
-    font-size: 1.7rem;
-}
-.carga select{
-    font-size: 1.2rem;
-}
-.malotes{
-    position: absolute;
-    top: 25.5rem;
-    left: 24rem;
-    font-size: 1.7rem;
-}
-.malotes input{
-    font-size: 1.2rem;
-}
-.extra{
-    position: absolute;
-    top: 25.5rem;
-    left: 60rem;
-    font-size: 1.7rem;
-}
-.extra select{
-    font-size: 1.2rem;
-}
-.especificacao_carga{
-    position: absolute;
-    top: 31.5rem;
-    left: 24rem;
-    font-size: 1.7rem;
-}
-.especificacao_carga input{
-    font-size: 1.2rem;
-}
-.botão{
-    padding: 10px;
-    position: absolute;
-    top: 35rem;
-    left: 24rem;
-    cursor: pointer;    
-}
-.botão input{
-    width: 200px;
-    height: 30px;
-    border: 2px solid rgb(22, 0, 224);
+
+.botão input {
+    width: 100%;
+    max-width: 200px;
+    height: 40px;
+    border: 2px solid #1600E0;
     border-radius: 10px;
     background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.botão input:hover {
+    background-color: #1600E0;
+    color: white;
 }
 
-.cnpj{
-    position: absolute;
-    top: 15.9rem;
-    left: 27rem;
-    font-size: 1.7rem;
+.bloco {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
 }
-.cnpj input{
-    font-size: 1.2rem;
+
+.relogio,
+.km,
+.lacre,
+.nf,
+.nome,
+.destino,
+.outrosdestinos,
+.carga,
+.malotes,
+.extra,
+.especificacao_carga {
+    width: 100%;
+    max-width: 500px;
+    font-size: 1rem;
 }
-.id{
-    font-size: 1.2rem;
-    width: 400px;
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 2px solid #1600E0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
-.carga_terc{
-    position: absolute;
-    top: 20rem;
-    left: 11rem;
-    font-size: 1.7rem;
-}
-.carga_terc select{
-    font-size: 1.2rem;
-}
-.motorista{
-    position: absolute;
-    top: 20rem;
-    left: 29rem;
-    font-size: 1.7rem;
-}
-.motorista input{
-    font-size: 1.2rem;
-    width: 17rem;
-}
-.ajudante{
-    position: absolute;
-    top: 20rem;
-    left: 56rem;
-    font-size: 1.7rem;
-}
-.ajudante input{
-    font-size: 1.2rem;
-    width: 40px;
-    text-align: center;
-}
-.paletes{
-    position: absolute;
-    top: 24rem;
-    left: 18rem;
-    font-size: 1.7rem;
-}
-.paletes input{
-    font-size: 1.2rem;
-    width: 50px;
-    text-align: center;
-}
-.chapelex{
-    position: absolute;
-    top: 24rem;
-    left: 42rem;
-    font-size: 1.7rem;
-}
-.chapelex input{
-    font-size: 1.2rem;
-    width: 50px;
-    text-align: center;
-}
-.nfs{
-    position: absolute;
-    top: 28rem;
-    left: 17rem;
-    font-size: 1.7rem;
-    text-align: center;
-}
-.nfs input{
-    font-size: 1.2rem;
-    width: 80px;
-    text-align: center;
-}
-.relogio_saida{
-    position: absolute;
-    top:19rem;
-    left: 7rem;
-    font-size: 1.7rem;
-    height: auto;
-}
-.relogio_saida input{
-    font-size: 1.2rem;
-}
-.radio-container {
-    display: inline-block;
-    vertical-align: middle;
-}
-  
-input[type="radio"] {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-.descarga{
-    position: absolute;
-    top:18.5rem;
-    left: 30rem;
-    font-size: 1.7rem;
-    height: auto;
-}
-.pago{
-    position: absolute;
-    top:19rem;
-    left: 55rem;
-    font-size: 1.7rem;
-    height: auto;
-}
-input[type='radio']{
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    
+
+input[type='radio'] {
     width: 18px;
     height: 18px;
-    
-    border: 2px solid blue;
+    border: 2px solid #00AEEF;
     border-radius: 50%;
-    
-    &:checked {
-        background-color: red;
+    cursor: pointer;
+}
+
+input[type='radio']:checked {
+    background-color: #E21A22;
+}
+
+.selected-destinos {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.destino-bullet {
+    display: inline-block;
+    margin-right: 5px;
+    background-color: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.9em;
+}
+
+.destino-bullet::before {
+    content: "•";
+    margin-right: 3px;
+    color: #333;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+    .inter,
+    .cabeçalho {
+        font-size: 1.5rem;
+    }
+    .placa select,
+    .placa input,
+    .placat_entrada input {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+    .cad_base {
+        width: 90%;
+        padding: 0.5rem;
+    }
+    .bloco {
+        flex-direction: column;
+        align-items: center;
+    }
+    .botão {
+        flex-direction: column;
+        align-items: center;
     }
 }

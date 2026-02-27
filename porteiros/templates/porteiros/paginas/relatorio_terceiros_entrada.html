@@ -4,10 +4,7 @@
 <head>
     <link rel="stylesheet" href="{% static 'css/relatorio.css' %}">
     <img src="{% static 'images/logo.png' %}">
-
-
     <title>Relatório Terceiros Entrada</title>
-
 </head>
 <body>
     <h1 class='titulo'>Terceiros Entrada</h1>
@@ -48,8 +45,10 @@
                 <th>Veículo</th>
                 <th>Data</th>
                 <th>CNPJ</th>
+                <th>EMPRESA</th>
                 <th>Carga</th>
                 <th>Motorista</th>
+                <th>Produto</th>
                 <th>Ajudante</th>
                 <th>Paletes</th>
                 <th>Capelex</th>
@@ -61,19 +60,22 @@
             <tr>
                 <td>{{ item.placa_entrada }}</td>
                 <td>{{ item.veiculo_entrada }}</td>
-                <td>{{ item.data }}</td>
+                <td>{{ item.data|date:"d/m/Y H:i" }}</td>
                 <td>{{ item.cnpj }}</td>
+                <td>{{ item.nome }}</td>
                 <td>{{ item.carga }}</td>
                 <td>{{ item.motorista }}</td>
+                <td>{{ item.produto }}</td>
                 <td>{{ item.ajudante }}</td>
                 <td>{{ item.paletes }}</td>
                 <td>{{ item.chapelex }}</td>
-                <td>{{ item.nfs_prefixo }};
+                <td>{{ item.nfs }}</td>
+                <!--<td>{{ item.nfs_prefixo }};
                     {{ item.nfs_de }};
                     {{ item.nfs_ate }};
                     {{ item.nfs_exceto }};
                     {{ item.nfs_apenas }}
-                </td>
+                </td>-->
             </tr>
             {% endfor %}
         </tbody>        

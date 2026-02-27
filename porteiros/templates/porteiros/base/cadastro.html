@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}" />
+
+    <link rel="icon" href="{% static 'images/inter.png' %}" type="image/x-icon" />
+
+    <title>Portaria</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Logo -->
+      <div class="logo-container">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" />
+      </div>
+
+      <!-- Formulário -->
+      <div class="contact-form">
+        <h2>Controle de Entrada e Saída de Veículos</h2>
+
+        <label for="form-control">Selecione:</label>
+        <select id="form-control" class="form-control">
+          <option disabled selected>...</option>
+          <option value="inter">Inter</option>
+          <option value="terceiros">Terceiros</option>
+        </select>
+
+        <div class="button-group">
+          <a href="{% url 'relatorio' %}"><button>Relatório</button></a>
+
+          {% if request.session.nivel == 'gerente' %}
+            <a href="{% url 'cadastro_veiculo' %}"><button>Cadastro de Veículo</button></a>
+            <a href="{% url 'cadastro_motorista' %}"><button>Cadastro de Motorista</button></a>
+            <a href="{% url 'cadastro_usuario' %}"><button>Cadastro de Usuário</button></a>
+          {% else %}
+            <button onclick="exibirAlerta(); return false;">Cadastro de Veículo</button>
+            <button onclick="exibirAlerta(); return false;">Cadastro de Motorista</button>
+            <button onclick="exibirAlerta(); return false;">Cadastro de Usuário</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <a href="{% url 'login' %}" class="logout-button">Sair</a>
+    </div>
+    <script>
+      document.getElementById('form-control').addEventListener('change', function () {
+        const selectedOption = this.value
+        if (selectedOption === 'inter') {
+          window.location.href = "{% url 'cadastro_inter' %}"
+        } else if (selectedOption === 'terceiros') {
+          window.location.href = "{% url 'cadastro_terceiros' %}"
+        }
+      })
+      
+      function exibirAlerta() {
+        alert('Acesso negado. Você não tem permissão para acessar essa funcionalidade!')
+      }
+    </script>
+  </body>
+</html>

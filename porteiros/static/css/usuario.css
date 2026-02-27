@@ -1,0 +1,227 @@
+:root {
+  --primary-color: #1e3c72;
+  --secondary-color: #2a5298;
+  --accent-color: #00c3ff;
+  --light-bg: rgba(255, 255, 255, 0.1);
+  --dark-bg: rgba(62, 45, 103, 0.53);
+  --white: #fff;
+  --text-color: #ffffff88;
+  --border-radius: 10px;
+  --transition: 0.3s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+  width: 90%;
+  background: var(--light-bg);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  max-width: 250px;
+  min-width: 150px;
+}
+
+.logo-container img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.contact-form {
+  width: 55%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 18px;
+  background: var(--dark-bg);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+h2 {
+  font-size: 22px;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.contact-form label {
+  display: block;
+  text-align: left;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.contact-form input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid var(--text-color);
+  background: transparent;
+  outline: none;
+  color: var(--white);
+  font-size: 16px;
+  transition: border-bottom var(--transition);
+}
+
+.contact-form input:focus {
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.contact-form input[type='submit'],
+.contact-form button,
+.contact-form a {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 15px;
+  transition: var(--transition);
+  border: none;
+  text-decoration: none;
+}
+
+.contact-form input[type='submit'] {
+  background: var(--accent-color);
+  font-weight: bold;
+  color: var(--white);
+}
+
+.contact-form input[type='submit']:hover {
+  background: #0088cc;
+}
+
+.contact-form button {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+}
+
+.contact-form button:hover,
+.contact-form a:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.nivel input {
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .logo-container {
+    width: 60%;
+    max-width: 250px;
+  }
+
+  .contact-form {
+    width: 100%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-container {
+    width: 80%;
+    max-width: 200px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .contact-form input {
+    font-size: 14px;
+  }
+}
+
+.nivel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+.nivel label {
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.nivel .opcao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.nivel input[type='radio'] {
+  margin: 0;
+  accent-color: #00c3ff;
+  width: 16px;
+  height: 16px;
+}
+
+.nivel label[for='gerente'],
+.nivel label[for='funcionario'] {
+  font-size: 14px;
+  font-weight: normal;
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
+.contact-form .cadastrar {
+  height: 40px;
+  background: #00c3ff;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  margin-top: 15px;
+  transition: background 0.3s ease-in-out;
+}
+
+.contact-form .cadastrar:hover {
+  background: #0088cc;
+}

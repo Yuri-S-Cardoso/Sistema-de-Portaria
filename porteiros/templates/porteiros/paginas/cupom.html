@@ -4,14 +4,16 @@
 
 <p><strong>PLACA:</strong> {{ placa_entrada }}</p>
 <p><strong>HORA:</strong> {{ data }}</p>
-<p><strong>EMPRESA:</strong> {{ cnpj }}</p>
+<p><strong>CNPJ:</strong> {{ cnpj }}</p>
+<p><strong>EMPRESA:</strong> {{ nome }}</p>
 <p><strong>CARGA:</strong>{{ carga }}</p>
 <p><strong>NF's:</strong> 
-    <li><strong>Prefixo:</strong> {{ nfs_prefixo }}</li>
+    <li><strong>NF's</strong> {{ nfs }}</li>
+    <!--<li><strong>Prefixo:</strong> {{ nfs_prefixo }}</li>
     <li><strong>De:</strong> {{ nfs_de }}</li>
     <li><strong>Até:</strong> {{ nfs_ate }}</li>
     <li><strong>Exceto:</strong> {{ nfs_exceto }}</li>
-    <li><strong>Apenas:</strong> {{ nfs_apenas }}</li>
+    <li><strong>Apenas:</strong> {{ nfs_apenas }}</li>-->
 </p>
 <p>INÍCIO DESCARGA:_____________</p>
 <p>FIM DESCARGA:_____________</p>
@@ -21,25 +23,23 @@
 <p>DEVOLUÇÃO INTER NF'S Nº:_____________</p>
 <p>LACRE SAÍDA INTER:_____________</p>
 <p>HORA LIBERAÇÃO CAMINHÃO:_____________</p>
+<p>FILME UTILIZADO:_____________</p>
+<p>LONA:_____________</p>
+<p>CAIXA BATIDA:_____________</p>
 <p>SR MOTORISTA ENTREGAR ESTE CONTROLE NA PORTARIA. <br>
     O CAMINHÃO TEM 5(CINCO) MINUTOS PARA SAIR!
 </p>
 
 <script>
-    // Função para acionar a impressão
     function imprimirCupom() {
         window.print();
     }
 
-    // Evento que detecta quando a página é carregada
     window.onload = function () {
-        // Chama a função de impressão assim que a página for carregada
         imprimirCupom();
-        // Aguarde 3 segundos (tempo suficiente para o usuário iniciar a impressão ou cancelar)
         setTimeout(redirecionarParaCadastro, 3000);
     };
 
-    // Função para redirecionar para a página 'cadastro'
     function redirecionarParaCadastro() {
         window.location.href = "{% url 'cadastro' %}";
     }

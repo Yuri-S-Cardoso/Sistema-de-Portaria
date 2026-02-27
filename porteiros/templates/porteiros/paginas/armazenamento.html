@@ -1,0 +1,81 @@
+{% load static %}
+
+<img src="{% static 'images/logo.png' %}" style="width: 120px;" />
+
+<p>
+  <strong>PLACA:</strong> {{ placa_entrada }}
+</p>
+<p>
+  <strong>HORA:</strong> {{ data }}
+</p>
+<p>
+  <strong>CNPJ:</strong> {{ cnpj }}
+</p>
+<p>
+  <strong>EMPRESA:</strong> {{ nome }}
+</p>
+<p>
+  <strong>CARGA:</strong>{{ carga }}
+</p>
+<p>
+  <strong>NF's:</strong>
+  <li>
+    <strong>NF's</strong> {{ nfs }}
+  </li>
+</p>
+<p>INÍCIO DESCARGA:_____________</p>
+<p>FIM DESCARGA:_____________</p>
+<p>QTD SAÍDA PALLETS:_____________</p>
+<p>VALOR DESCARGA:_____________</p>
+<p>CARGA P/ OUTRO CLIENTE;NF'S Nº:_____________</p>
+<p>DEVOLUÇÃO INTER NF'S Nº:_____________</p>
+<p>LACRE SAÍDA INTER:_____________</p>
+<p>HORA LIBERAÇÃO CAMINHÃO:_____________</p>
+<p>FILME UTILIZADO:_____________</p>
+<p>LONA:_____________</p>
+<p>CAIXA BATIDA:_____________</p>
+<p>
+  SR MOTORISTA ENTREGAR ESTE CONTROLE NA PORTARIA. <br />
+  O CAMINHÃO TEM 5(CINCO) MINUTOS PARA SAIR!
+</p>
+
+<script>
+  function imprimirCupom() {
+    let conteudo = document.documentElement.outerHTML // Captura todo o HTML da página
+  
+    fetch('/imprimir-cupom/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      },
+      body: JSON.stringify({ conteudo: conteudo })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.mensagem)
+        setTimeout(() => {
+          window.location.href = "{% url 'cadastro' %}" // Redireciona após 3 segundos
+        }, 3000)
+      })
+  }
+  
+  window.onload = function () {
+    imprimirCupom()
+  }
+  
+  function getCookie(name) {
+    let cookieValue = null
+    if (document.cookie && document.cookie !== '') {
+      let cookies = document.cookie.split(';')
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim()
+        if (cookie.substring(0, name.length + 1) === name + '=') {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+          break
+        }
+      }
+    }
+    return cookieValue
+  }
+</script>

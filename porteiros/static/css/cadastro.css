@@ -1,0 +1,169 @@
+ /* Reset padrão */
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Arial', sans-serif;
+ }
+
+ /* Corpo da página */
+ body {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+     background: linear-gradient(135deg, #1e3c72, #2a5298);
+     padding: 20px;
+ }
+
+ /* Container flexível */
+ .container {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-wrap: wrap;
+     max-width: 900px;
+     width: 90%;
+     background: rgba(255, 255, 255, 0.1);
+     padding: 40px;
+     border-radius: 12px;
+     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+ }
+
+ /* Estilização do logo */
+ .logo-container {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 40%;
+     max-width: 250px;
+     min-width: 150px;
+ }
+
+ .logo-container img {
+     width: 100%;
+     height: auto;
+     filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.2));
+ }
+
+ /* Formulário */
+ .contact-form {
+     width: 55%;
+     max-width: 400px;
+     padding: 30px;
+     border-radius: 10px;
+     background: rgba(62, 45, 103, 0.6);
+     text-align: center;
+     backdrop-filter: blur(10px);
+ }
+
+ /* Título */
+ h2 {
+     font-size: 22px;
+     color: white;
+     text-transform: uppercase;
+     margin-bottom: 20px;
+     font-weight: bold;
+ }
+
+ /* Select */
+ .contact-form label {
+     display: block;
+     text-align: left;
+     color: white;
+     font-size: 14px;
+     font-weight: bold;
+     margin-top: 15px;
+ }
+
+ .contact-form select {
+     width: 100%;
+     padding: 10px;
+     border-radius: 5px;
+     border: none;
+     font-size: 16px;
+     cursor: pointer;
+ }
+
+ /* Grupo de botões */
+ .button-group {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     margin-top: 20px;
+ }
+
+ /* Botões */
+ .button-group button {
+     width: 100%;
+     padding: 12px;
+     font-size: 16px;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+     background: #00c3ff;
+     color: white;
+     font-weight: bold;
+     transition: background 0.3s ease-in-out;
+ }
+
+ .button-group button:hover {
+     background: #0088cc;
+ }
+
+ /* Responsividade */
+ @media (max-width: 768px) {
+     .container {
+         flex-direction: column;
+         text-align: center;
+         padding: 30px;
+     }
+
+     .logo-container {
+         width: 60%;
+         max-width: 250px;
+     }
+
+     .contact-form {
+         width: 100%;
+         padding: 30px;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .logo-container {
+         width: 80%;
+         max-width: 200px;
+     }
+
+     h2 {
+         font-size: 18px;
+     }
+
+     .contact-form select,
+     .button-group button {
+         font-size: 14px;
+     }
+ }
+
+ /* Rodapé */
+ .footer {
+     position: absolute;
+     bottom: 20px;
+     right: 20px;
+     text-align: right;
+ }
+
+ .logout-button {
+     padding: 10px 20px;
+     background-color: #f44336;
+     color: white;
+     font-weight: bold;
+     border-radius: 5px;
+     text-decoration: none;
+     transition: background-color 0.3s ease;
+ }
+
+ .logout-button:hover {
+     background-color: #d32f2f;
+ }

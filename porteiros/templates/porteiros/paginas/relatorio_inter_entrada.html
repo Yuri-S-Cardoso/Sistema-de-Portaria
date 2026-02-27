@@ -56,7 +56,7 @@
             {% for item in data %}
             <tr>
                 <td>{{ item.placa_entrada }}</td>
-                <td>{{ item.data_entrada }}</td>
+                <td>{{ item.data_entrada|date:"d/m/Y H:i" }}</td>
                 <td>{{ item.km_entrada }}</td>
                 <td>{{ item.lacre_entrada }}</td>
                 <td>{{ item.nfs_entrada }}</td>
@@ -67,7 +67,7 @@
     </table>
     <br>
 
-    <button onclick="window.print()">Imprimir</button>
+    <button onclick="exportToExcel()">Exportar para Excel</button>
 
     <button onclick="closeTab()">Voltar</button>
 
@@ -76,7 +76,17 @@
             window.close();
         }
 
-        //--------------------------------------------
+        function exportToExcel() {
+            const dataInicio = document.getElementById('data_inicio').value;
+            const dataFim = document.getElementById('data_fim').value;
+            const placa = document.getElementById('placa').value;
+            const url = new URL(window.location.href);
+            url.searchParams.set('export', 'excel');
+            url.searchParams.set('data_inicio', dataInicio);
+            url.searchParams.set('data_fim', dataFim);
+            url.searchParams.set('placa', placa);
+            window.location.href = url.toString();
+        }
 
         var selectedDataInicio = "{{ selected_data_inicio }}";
         var selectedDataFim = "{{ selected_data_fim }}";
@@ -99,8 +109,6 @@
         if (document.getElementById('data_fim').value === "") {
             document.getElementById('data_fim').value = formattedDate;
         }
-
-
     </script>
 
 </body>

@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+
+    <link rel="icon" href="{% static 'images/inter.png' %}" type="image/x-icon" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Portaria</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" />
+        </div>
+
+        <!-- Formulário -->
+        <div class="contact-form">
+            <h2>Controle de Entrada e Saída de Veículos</h2>
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+                <label for="matricula">Matrícula:</label>
+                <input type="text" name="matricula" placeholder="Digite a matrícula" pattern="\d*" maxlength="10" autocomplete="off" required />
+
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" id="senha" placeholder="Digite a senha" autocomplete="new-password" required />
+
+                <button type="button" onclick="mostrarSenha()">Mostrar Senha</button>
+
+                <input type="submit" value="Login" />
+            </form>
+
+            <script>
+                function mostrarSenha() {
+                    var senhaInput = document.getElementById('senha')
+                    senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password'
+                }
+                //-----------------------------------------------------------------//
+            </script>
+
+            {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

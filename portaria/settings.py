@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'porteiros.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'portaria.urls'
@@ -78,9 +79,10 @@ WSGI_APPLICATION = 'portaria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
+
 
 
 # Password validation
@@ -133,3 +135,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 APPEND_SLASH = False
+
+# Usa sessões no banco de dados (padrão do Django)
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+# Define o tempo de expiração da sessão (exemplo: 1 hora sem atividade)
+SESSION_COOKIE_AGE = 1800  # 30 minutos
+
+# Se True, a sessão expira ao fechar o navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+# Se True, cria uma nova sessão após login (boa prática de segurança)
+SESSION_COOKIE_SECURE = False  # Coloque True se usar HTTPS
+
+# Habilita a renovação da sessão a cada requisição (opcional)
+SESSION_SAVE_EVERY_REQUEST = True
+
+# Habilita expirar a sessão ao fechar o navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

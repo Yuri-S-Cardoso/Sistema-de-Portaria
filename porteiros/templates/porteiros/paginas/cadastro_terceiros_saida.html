@@ -1,182 +1,184 @@
-{% include 'porteiros/base/cad_style.html' %}
-{% include 'porteiros/base/cad_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div class="container">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <form action="{% url 'cadastro_terceiros_saida' %}" method="post" autocomplete="off">
+    <link rel="stylesheet" href="{% static 'css/cad_style.css' %}" />
+
+    <link rel="icon" href="{% static 'images/inter.png' %}" type="image/x-icon" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Portaria</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="{% url 'cadastro_terceiros_saida' %}" method="post" autocomplete="off">
         {% csrf_token %}
-        <hr>
-            <nav>
-                <div class="placa">
-                    <input type="text" name="placa_saida" id="placa-saida" readonly>
-                </div>
-                <div class="cabeçalho">Terceiros</div>
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </div>
-            </nav>
-        <hr>
-
-        <div class="titulo">
-            <h1 style="font-size: 2.5rem; position: absolute;">SAÍDA</h1><br>
-    
-            <div class="bloco">
-                <div class="relogio_saida">
-                    <input type="text" name="data_saida" id="data_hora_input_display" disabled readonly>
-                </div>
+        <hr />
+        <nav>
+          <div class="placa">
+            <input type="text" name="placa_saida" id="placa-saida" readonly />
+          </div>
+          <div class="cabeçalho">Terceiros - Saída</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </nav>
+        <hr />
+          <div class="bloco">
+            <div class="relogio_saida">
+              <input type="text" name="data_saida" style="text-align: center;" id="data_hora_input_display" disabled readonly />
             </div>
+          </div>
 
-            <div class="bloco">
-                <div class="descarga">
-                    <label for="option1">Descarregou?</label>
-                    <div class="radio-container">
-                        <input type="radio" id="option1" name="descarga" onchange="toggleInputText()" value="SIM" required/>
-                        <label for="option1">Sim</label>
-                    </div>
-                    
-                    <div class="radio-container">
-                        <input type="radio" id="option-descarga2" name="descarga" onchange="toggleInputText()" value="NÃO" required/>
-                        <label for="option-descarga2">Não</label>
-                    </div><br>
-                
-                    <input type="text" id="inputText" name="motivo" oninput="this.value = this.value.toUpperCase()" disabled required>
-                </div>
-                
-                <div class="pago">
-                    <label for="option-pago1">Descarga Paga?</label>
-                    <div class="radio-container">
-                        <input type="radio" id="option-pago1" name="descarga_paga" value="SIM"/ required>
-                        <label for="option-pago1">Sim</label>
-                    </div>
-                    
-                    <div class="radio-container">
-                        <input type="radio" id="option-pago2" name="descarga_paga" value="NÃO" / required>
-                        <label for="option-pago2">Não</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bloco">
-                <div class="paletes">
-                    <label>QTDE Paletes Recebidos:</label>
-                    <input type="number" name="paletes_saida" required>
-                </div>
-
-                <div class="chapelex">
-                    <label>QTDE Chapelex Recebidos:</label>
-                    <input type="number" name="chapelex_saida" required>
-                </div>
-            </div>
-
-            <div class="bloco">
-                <div class="nfs">
-                  <label class="index">NF'S de Entrada:</label><br>
-        
-                  <label>Prefixo:</label>
-                  <input type="number" name="nfs_prefixo_saida" required><br>
-        
-                  <label>De:</label>
-                  <input type="number" name="nfs_de_saida" required><br>
-        
-                  <label>Até:</label>
-                  <input type="number" name="nfs_ate_saida" required><br>
-        
-                  <label>Exceto:</label>
-                  <input type="number" name="nfs_exceto_saida" required><br>
-        
-                  <label>Apenas:</label>
-                  <input type="number" name="nfs_apenas_saida" required>
-                </div>
+          <div class="bloco">
+            <div class="descarga">
+              <label for="option1">Descarregou?</label>
+              <div class="radio-container">
+                <input type="radio" id="option1" name="descarga" onchange="toggleInputText()" value="SIM" required />
+                <label for="option1">Sim</label>
               </div>
 
-            <div class="bloco">
-                <div class="botão">
-                    <input class="Salvar" type="submit" value="Salvar">
-                
-                    <a href="{% url 'cadastro_inter' %}">
-                    <input type="button" id="cancelar" value="Cancelar">
-                    </a>
-                
-                    <a href="{% url 'cadastro' %}">
-                    <input type="button" id="sair" value="Sair">
-                    </a>
-                </div>
+              <div class="radio-container">
+                <input type="radio" id="option-descarga2" name="descarga" onchange="toggleInputText()" value="NÃO" required />
+                <label for="option-descarga2">Não</label>
+              </div><br />
+
+              <input type="text" id="inputText" name="motivo" oninput="this.value = this.value.toUpperCase()" disabled required />
             </div>
 
+            <div class="pago">
+              <label for="option-pago1">Descarga Paga?</label>
+              <div class="radio-container">
+                <input type="radio" id="option-pago1" name="descarga_paga" value="SIM" required />
+                <label for="option-pago1">Sim</label>
+              </div>
+
+              <div class="radio-container">
+                <input type="radio" id="option-pago2" name="descarga_paga" value="NÃO" required />
+                <label for="option-pago2">Não</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="bloco">
+            <div class="paletes">
+              <label>QTDE Paletes Recebidos:</label>
+              <input type="number" name="paletes_saida" required />
+            </div>
+
+            <div class="chapelex">
+              <label>QTDE Chapelex Recebidos:</label>
+              <input type="number" name="chapelex_saida" required />
+            </div>
+          </div>
+
+          <div class="bloco">
+            <div class="nfs">
+              <label class="index">NF'S de Entrada:</label><br />
+
+              <label>Nota fiscal:</label>
+              <input type="text" name="nfs" required />
+
+              <!-- <label>Prefixo:</label>
+                      <input type="number" name="nfs_prefixo" required><br>
+            
+                      <label>De:</label>
+                      <input type="number" name="nfs_de" required><br>
+            
+                      <label>Até:</label>
+                      <input type="number" name="nfs_ate" required><br>
+            
+                      <label>Exceto:</label>
+                      <input type="number" name="nfs_exceto" required><br>
+            
+                      <label>Apenas:</label>
+                      <input type="number" name="nfs_apenas" required> -->
+            </div>
+          </div>
+
+          <div class="bloco">
+            <div class="botão">
+              <input class="Salvar" type="submit" value="Salvar" />
+
+              <a href="{% url 'cadastro_terceiros' %}"><input type="button" id="cancelar" value="Cancelar" /></a>
+
+              <a href="{% url 'cadastro' %}"><input type="button" id="sair" value="Sair" /></a>
+            </div>
+          </div>
         </div>
-    </form>
-</div>
+      </form>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    function atualizarRelogio() {
-        var dataHoraAtual = new Date().toLocaleString();
-        document.getElementById("data_hora_input_display").value = dataHoraAtual;
-    }
-
-    atualizarRelogio();
-    
-    setInterval(atualizarRelogio, 1000);  
-
-    //--------------------------------------------------------------
-
-    function toggleInputText() {
-        var option1 = document.getElementById('option1');
-        var inputText = document.getElementById('inputText');
-
+    <script>
+      function atualizarRelogio() {
+        var dataHoraAtual = new Date().toLocaleString()
+        document.getElementById('data_hora_input_display').value = dataHoraAtual
+      }
+      
+      atualizarRelogio()
+      
+      setInterval(atualizarRelogio, 1000)
+      
+      //--------------------------------------------------------------
+      
+      function toggleInputText() {
+        var option1 = document.getElementById('option1')
+        var inputText = document.getElementById('inputText')
+      
         if (option1.checked) {
-            inputText.setAttribute('disabled', 'disabled');
+          inputText.setAttribute('disabled', 'disabled')
         } else {
-            inputText.removeAttribute('disabled');
+          inputText.removeAttribute('disabled')
         }
-    }
-
-    //----------------------------------------------------------
-
-    function validateForm() {
-    var inputs = document.getElementsByTagName('input');
-    var selects = document.getElementsByTagName('select');
-    var isValid = true;
-
-    for (var i = 0; i < inputs.length; i++) {
-        if (inputs[i].hasAttribute('required') && inputs[i].value === '') {
-        isValid = false;
-        break;      
+      }
+      
+      //----------------------------------------------------------
+      
+      function validateForm() {
+        var inputs = document.getElementsByTagName('input')
+        var selects = document.getElementsByTagName('select')
+        var isValid = true
+      
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].hasAttribute('required') && inputs[i].value === '') {
+            isValid = false
+            break
+          }
         }
-    }
-
-    for (var i = 0; i < selects.length; i++) {
-        if (selects[i].hasAttribute('required') && selects[i].value === '') {
-        isValid = false;
-        break;      
+      
+        for (var i = 0; i < selects.length; i++) {
+          if (selects[i].hasAttribute('required') && selects[i].value === '') {
+            isValid = false
+            break
+          }
         }
-    }
-
-    if (!isValid) {
-        alert('Por favor, preencha todos os campos obrigatórios.');
-    }
-
-    return isValid;
-    }
-
-    //---------------------------------------------------------------------------
-
-    function obterValorParametro(nomeParametro) {
-        var urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(nomeParametro);
-    }
-
-    window.onload = function() {
-        var placaSaida = document.getElementById("placa-saida");
-        var placa = obterValorParametro("placa");
-        placaSaida.value = placa;
-    }  
-</script>
-
-        
-
+      
+        if (!isValid) {
+          alert('Por favor, preencha todos os campos obrigatórios.')
+        }
+      
+        return isValid
+      }
+      
+      //---------------------------------------------------------------------------
+      
+      function obterValorParametro(nomeParametro) {
+        var urlParams = new URLSearchParams(window.location.search)
+        return urlParams.get(nomeParametro)
+      }
+      
+      window.onload = function () {
+        var placaSaida = document.getElementById('placa-saida')
+        var placa = obterValorParametro('placa')
+        placaSaida.value = placa
+      }
+    </script>
+  </body>
+</html>

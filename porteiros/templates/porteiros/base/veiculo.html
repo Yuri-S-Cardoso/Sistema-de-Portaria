@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{% static 'css/usuario.css' %}">
+
+    <link rel="icon" href="{% static 'images/inter.png' %}" type="image/x-icon">
+
+    <title>Portaria</title>
+
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-container">
+          <img src="{% static 'images/logo.png' %}" alt="Logo" />
+        </div>
+        <div class="contact-form">
+            <h2>Controle de Entrada e Saída de Veículos</h2>
+            <form action="" method="post" autocomplete="off">
+            {% csrf_token %}
+        
+            <div>
+                <label for="placa">Placa do Veículo</label>
+                <input type="text" name="placa" placeholder="Digite a Placa" maxlength="8" required oninput="this.value = this.value.toUpperCase()" /><br />
+        
+                <label for="veiculo">Veículo</label>
+                <input type="text" name="veiculo" placeholder="Digite o Veículo" maxlength="10" required oninput="this.value = this.value.toUpperCase()" /><br />
+        
+                <label for="empresa">Empresa</label>
+                <input type="text" name="empresa" placeholder="Digite a Empresa" maxlength="50" required oninput="this.value = this.value.toUpperCase()" /><br />
+        
+                <input class="cadastrar" type="submit" value="Cadastrar" />
+            </div>
+            </form>
+        
+            <a href="{% url 'cadastro' %}" style="display: inline-block; text-align: center; padding: 10px; background: rgba(255, 255, 255, 0.2); color: white; border-radius: 25px; text-decoration: none; margin-top: 10px; transition: background 0.3s ease-in-out;">Voltar</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -4,10 +4,7 @@
 <head>
     <link rel="stylesheet" href="{% static 'css/relatorio.css' %}">
     <img src="{% static 'images/logo.png' %}">
-
-
     <title>Relatório Inter Saída</title>
-
 </head>
 <body>
     <h1 class='titulo'>Inter Saída</h1>
@@ -15,7 +12,7 @@
 
     <form method="GET" action="">
         <div class="tabela">
-            <div class="incio">
+            <div class="inicio">
                 <label for="data_inicio">Data de início:</label><br>
                 <input type="date" id="data_inicio" name="data_inicio" value="{{ selected_data_inicio }}"><br>    
             </div>
@@ -63,7 +60,7 @@
             <tr>
                 <td>{{ item.placa }}</td>
                 <td>{{ item.veiculo }}</td>
-                <td>{{ item.data }}</td>
+                <td>{{ item.data|date:"d/m/Y H:i" }}</td>
                 <td>{{ item.km_saida }}</td>
                 <td>{{ item.lacre_saida }}</td>
                 <td>{{ item.nfs_saida }}</td>
@@ -79,7 +76,7 @@
     </table>
     <br>
 
-    <button onclick="window.print()">Imprimir</button>
+    <button onclick="exportToExcel()">Exportar para Excel</button>
 
     <button onclick="closeTab()">Voltar</button>
 
@@ -88,7 +85,17 @@
             window.close();
         }
 
-        //--------------------------------------------
+        function exportToExcel() {
+            const dataInicio = document.getElementById('data_inicio').value;
+            const dataFim = document.getElementById('data_fim').value;
+            const placa = document.getElementById('placa').value;
+            const url = new URL(window.location.href);
+            url.searchParams.set('export', 'excel');
+            url.searchParams.set('data_inicio', dataInicio);
+            url.searchParams.set('data_fim', dataFim);
+            url.searchParams.set('placa', placa);
+            window.location.href = url.toString();
+        }
 
         var selectedDataInicio = "{{ selected_data_inicio }}";
         var selectedDataFim = "{{ selected_data_fim }}";
@@ -111,8 +118,6 @@
         if (document.getElementById('data_fim').value === "") {
             document.getElementById('data_fim').value = formattedDate;
         }
-
-
     </script>
 
 </body>

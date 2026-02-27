@@ -1,0 +1,214 @@
+/* Reset padrão */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+
+/* Corpo da página */
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    padding: 20px;
+}
+
+
+/* Container flexível para centralizar logo e formulário */
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 900px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Estilização do logo */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    max-width: 250px;
+    min-width: 150px;
+}
+
+.logo-container img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+
+/* Estilização do formulário */
+
+.contact-form {
+    width: 55%;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 18px;
+    background: rgba(62, 45, 103, 0.53);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+
+/* Título */
+
+h2 {
+    font-size: 22px;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+
+/* Labels */
+
+.contact-form label {
+    display: block;
+    text-align: left;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+/* Campos de entrada */
+
+.contact-form input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ffffff88;
+    background: transparent;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.contact-form input:focus {
+    border-bottom: 2px solid #00c3ff;
+}
+
+
+/* Botão de login */
+
+.contact-form input[type='submit'] {
+    height: 40px;
+    background: #00c3ff;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-top: 15px;
+    transition: background 0.3s ease-in-out;
+}
+
+.contact-form input[type='submit']:hover {
+    background: #0088cc;
+}
+
+
+/* Botão de mostrar senha */
+
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease-in-out;
+}
+
+.contact-form button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+    .logo-container {
+        width: 60%;
+        max-width: 250px;
+    }
+    .contact-form {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        width: 80%;
+        max-width: 200px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .contact-form input {
+        font-size: 14px;
+    }
+    .contact-form input[type='submit'],
+    .contact-form button {
+        font-size: 16px;
+    }
+}
+
+
+/* Mensagem de erro de login */
+
+.error-message {
+    background: rgba(255, 0, 0, 0.15);
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    color: white;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-align: center;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+
+/* Animação de aparição suave */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}" />
+
+    <link rel="icon" href="{% static 'images/inter.png' %}" type="image/x-icon" />
+
+    <title>Portaria</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Logo -->
+      <div class="logo-container">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" />
+      </div>
+      <div class="contact-form">
+        <h2>Controle de Entrada e Saída de Veículos</h2>
+        <label for="inter">Inter:</label>
+        <select id="inter" class="form-control" style="cursor: pointer;">
+          <option disabled selected>Selecione</option>
+          <option value="saida">Saída</option>
+          <Option value="entrada">Entrada</Option>
+        </select>
+
+        <label for="terceiros">Terceiros:</label>
+        <select id="terceiros" class="form-control" style="cursor: pointer;">
+          <option disabled selected>Selecione</option>
+          <option value="entrada">Entrada</option>
+          <Option value="saida">Saída</Option>
+        </select>
+
+        <a href="{% url 'cadastro' %}" style="display: inline-block; text-align: center; padding: 10px; background: rgba(255, 255, 255, 0.2); color: white; border-radius: 25px; text-decoration: none; margin-top: 10px; transition: background 0.3s ease-in-out;">Voltar</a>
+
+        <script>
+          document.getElementById('inter').addEventListener('change', function () {
+            var selectedOption = this.value
+            if (selectedOption === 'saida') {
+              window.open('/relatorio_inter_saida/', '_blank')
+            } else if (selectedOption === 'entrada') {
+              window.open('/relatorio_inter_entrada/', '_blank')
+            }
+            this.selectedIndex = 0 // Reseta o select após a ação
+          })
+          
+          document.getElementById('terceiros').addEventListener('change', function () {
+            var selectedOption = this.value
+            if (selectedOption === 'entrada') {
+              window.open('/relatorio_terceiros_entrada/', '_blank')
+            } else if (selectedOption === 'saida') {
+              window.open('/relatorio_terceiros_saida/', '_blank')
+            }
+            this.selectedIndex = 0 // Reseta o select após a ação
+          })
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

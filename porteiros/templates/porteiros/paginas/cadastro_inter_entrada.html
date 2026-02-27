@@ -1,90 +1,97 @@
-{% include 'porteiros/base/cad_base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div class="container">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <form action="{% url 'cadastro_inter_entrada' %}" method="post" autocomplete="off">
+    <link rel="stylesheet" href="{% static 'css/cad_style.css' %}" />
+
+    <link rel="icon" href="{% static 'images/inter.png' %}" type="image/x-icon" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Portaria</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="{% url 'cadastro_inter_entrada' %}" method="post" autocomplete="off">
         {% csrf_token %}
-        
-        <hr>
-            <nav>         
-                <div class="placai_entrada">
-                    <input type="text" name="placa_entrada" value="{{ request.GET.placa }}" readonly>
-                </div>
-                <div class="inter">Inter</div>
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                
-            </nav>
-        <hr>
 
-        <div class="titulo">
-            <h2 style="font-size: 2.5rem; position: absolute;">ENTRADA</h2><br>
-        
-            <div class="bloco">
-                <div class="relogio_entrada">
-                    <input type="text" name="data_entrada" id="data_hora_input_display" disabled readonly>
-                </div>
-            </div><br>
+        <hr />
+        <nav>
+          <div class="placai_entrada">
+            <input type="text" name="placa_entrada" value="{{ request.GET.placa }}" readonly />
+          </div>
+          <div class="inter">Inter - Entrada</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </nav>
+        <hr />
 
-            <div class="bloco">
-                <div class="km_entrada">
-                    <label for="">Km Entrada:</label>
-                    <input type="number" name="km_entrada" required>
-                </div>  
-
-                <div class="lacre_entrada">
-                    <label for="">Lacre Entrada:</label>
-                    <input type="text" name="lacre_entrada" oninput="this.value = this.value.toUpperCase()" style="font-size: 1rem" required>
-                </div>
+          <div class="bloco">
+            <div class="relogio_entrada">
+              <input type="text" name="data_entrada" style="text-align: center;" id="data_hora_input_display" disabled readonly />
             </div>
-            
-            <div class="bloco">
-                <div class="nf_entrada">
-                    <label for="">NF'S Entrada:</label>
-                    <input type="number" name="nfs_entrada" value="{{ registro_saida.nfs_saida }}" required>
-                </div>
+          </div><br />
 
-                <div class="malotes_entrada">
-                    <label for="">QTDE Malotes Entrada:</label>
-                    <input type="number" name="qtde_malotes_entrada" required>
-                </div>
+          <div class="bloco">
+            <div class="km_entrada">
+              <label for="">Km Entrada:</label>
+              <input type="number" name="km_entrada" required />
             </div>
 
-            <div class="bloco">
-                <div class="botão">
-                    <input class="Salvar" type="submit" value="Salvar">
-                
-                    <a href="{% url 'cadastro_inter' %}">
-                    <input type="button" id="cancelar" value="Cancelar">
-                    </a>
-                
-                    <a href="{% url 'cadastro' %}">
-                    <input type="button" id="sair" value="Sair">
-                    </a>
-                </div>
+            <div class="lacre_entrada">
+              <label for="">Lacre Entrada:</label>
+              <input type="text" name="lacre_entrada" oninput="this.value = this.value.toUpperCase()" style="font-size: 1rem" required />
             </div>
+          </div>
+
+          <div class="bloco">
+            <div class="nf_entrada">
+              <label for="">NF'S Entrada:</label>
+              <input type="text" name="nfs_entrada" value="{{ registro_saida.nfs_saida }}" required />
+            </div>
+
+            <div class="malotes_entrada">
+              <label for="">QTDE Malotes Entrada:</label>
+              <input type="number" name="qtde_malotes_entrada" required />
+            </div>
+          </div>
+
+          <div class="bloco">
+            <div class="botão">
+              <input class="Salvar" type="submit" value="Salvar" />
+
+              <a href="{% url 'cadastro_inter' %}"><input type="button" id="cancelar" value="Cancelar" /></a>
+
+              <a href="{% url 'cadastro' %}"><input type="button" id="sair" value="Sair" /></a>
+            </div>
+          </div>
         </div>
-    </form>
-</div>
-<script>
-    function atualizarRelogio() {
-        var dataHoraAtual = new Date().toLocaleString();
-        document.getElementById("data_hora_input_display").value = dataHoraAtual;
-    }
-
-    atualizarRelogio();
-    
-    setInterval(atualizarRelogio, 1000);  
-
-    //--------------------------------------------------------------
-    
-    var placaSelecionada = "{{ placa_selecionada }}";
-    var veiculoSelecionado = "{{ veiculo_selecionado }}";
-
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("placa-select").value = placaSelecionada;
-        document.getElementById("veiculo-input").value = veiculoSelecionado;
-    });
-</script>
+      </form>
+    </div>
+    <script>
+      function atualizarRelogio() {
+        var dataHoraAtual = new Date().toLocaleString()
+        document.getElementById('data_hora_input_display').value = dataHoraAtual
+      }
+      
+      atualizarRelogio()
+      
+      setInterval(atualizarRelogio, 1000)
+      
+      //--------------------------------------------------------------
+      
+      var placaSelecionada = '{{ placa_selecionada }}'
+      var veiculoSelecionado = '{{ veiculo_selecionado }}'
+      
+      document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('placa-select').value = placaSelecionada
+        document.getElementById('veiculo-input').value = veiculoSelecionado
+      })
+    </script>
+  </body>
+</html>

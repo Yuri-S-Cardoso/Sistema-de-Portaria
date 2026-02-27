@@ -58,18 +58,19 @@
             {% for item in data %}
             <tr>
                 <td>{{ item.placa_saida }}</td>
-                <td>{{ item.data_saida }}</td>
+                <td>{{ item.data_saida|date:"d/m/Y H:i" }}</td>
                 <td>{{ item.descarga }}</td>
                 <td>{{ item.motivo }}</td>
                 <td>{{ item.descarga_paga }}</td>
                 <td>{{ item.paletes_saida }}</td>
                 <td>{{ item.chapelex_saida }}</td>
-                <td>{{ item.nfs_prefixo_saida }};
-                    {{ item.nfs_de_saida }};
-                    {{ item.nfs_ate_saida }};
-                    {{ item.nfs_exceto_saida }};
-                    {{ item.nfs_apenas_saida }}
-                </td>
+                <td>{{ item.nfs }}</td>
+                <!--<td>{{ item.nfs_prefixo }};
+                    {{ item.nfs_de }};
+                    {{ item.nfs_ate }};
+                    {{ item.nfs_exceto }};
+                    {{ item.nfs_apenas }}
+                </td>-->
             </tr>
             {% endfor %}
         </tbody>        
